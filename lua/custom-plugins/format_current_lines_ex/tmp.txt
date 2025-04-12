@@ -1,0 +1,34 @@
+  defp configire_proposal_fields(fields, state) do
+  Enum.reduce(fields, fields, fn
+    {field_id, field_data} = data, acc
+    when field_id in ["spec", "guarantee", "item_delivery_period", "price"] ->
+  
+      lang = Gettext.get_locale()
+      group = "#{field_data[:group]}/!#{field_id}-"
+  
+      new_field_data =
+        cond do
+          "offer_period" == field_id ->
+            new_field_data
+            |> Map.put(:type, "bool")
+            |> Map.put(:label, LS.get("offer_period_proposal.edit", lang, []))
+  
+          true ->
+            new_field_data |> Map.put(:group, group)
+        end
+  
+      new_field_data =
+        new_field_data
+        |> Map.put(:value, proposal_value!(state, field_id))
+        |> Map.put(:order, (new_field_data[:order] || new_field_data["order"]) + 0.1)
+        |> Map.put(:group, group)
+  
+      field_data = field_data |> Map.put("group", group)
+  
+      Map.put(acc, "proposal_#{field_id}", new_field_data)
+      |> Map.put(field_id, field_data)
+  
+    _e, acc ->
+      acc
+  end)
+  end

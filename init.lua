@@ -35,3 +35,35 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg "", "\n"),
+    vim.fn.getregtype "",
+  }
+end
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+    ["*"] = require("vim.ui.clipboard.osc52").copy "*",
+  },
+  paste = {
+    ["+"] = paste,
+    ["*"] = paste,
+  },
+}
+
+-- validate that lazy is available
+if not pcall(require, "lazy") then
+  -- stylua: ignore
+  vim.api.nvim_echo({ { ("Unable to load lazy from: %s\n"):format(lazypath), "ErrorMsg" }, { "Press any key to exit...", "MoreMsg" } }, true, {})
+  vim.fn.getchar()
+  vim.cmd.quit()
+end
+
+-- remap visual block mode
+vim.api.nvim_set_keymap("n", "<A-v>", "<C-v>", { noremap = true, silent = true })
+
+vim.opt.swapfile = false

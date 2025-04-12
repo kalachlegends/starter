@@ -1,0 +1,23 @@
+{
+  "name": "user_snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "elixir",
+        "path": "./elixir.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./vue.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      }
+
+    ]
+  }
+}
