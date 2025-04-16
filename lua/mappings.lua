@@ -17,14 +17,14 @@ end, {desc = "Open vertical split" })
 
 map("n", "jk", "<ESC>")
 
-map("n", "bc", function()
+map("n", "<leader>bc", function()
   vim.cmd("w")
   vim.api.nvim_buf_delete(0, { force = true })
 end)
 
 
 
-map("n", "bC", function()
+map("n", "<leader>bC", function()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
   if vim.bo[buf].buflisted then
     vim.api.nvim_buf_delete(buf, { force = true })
@@ -145,8 +145,8 @@ map("n", "<leader>wk", function()
   vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
 end, { desc = "whichkey query lookup" })
 
-map("n", "<leader>tn", ":tabnew<CR>", { desc = "New Tab" })
-map("n", "<leader>tc", ":tabclose<CR>", { desc = "Close Tab" })
-map("n", "<Tab>", ":tabnext<CR>", { desc = "Next Tab" })
+-- map("n", "<leader>tn", ":tabnew<CR>", { desc = "New Tab" })
+-- map("n", "<leader>tc", ":tabclose<CR>", { desc = "Close Tab" })
+-- map("n", "<Tab>", ":tabnext<CR>", { desc = "Next Tab" })
 
     

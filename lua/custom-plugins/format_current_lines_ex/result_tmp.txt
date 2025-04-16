@@ -1,34 +1,37 @@
 
-  defp configire_proposal_fields(fields, state) do
-    Enum.reduce(fields, fields, fn
-      {field_id, field_data} = data, acc
-      when field_id in ["spec", "guarantee", "item_delivery_period", "price"] ->
-        lang = Gettext.get_locale()
-        group = "#{field_data[:group]}/!#{field_id}-"
+  def gen_only_items(state, attrs) do
+    offset = attrs[:offset] || 0
+    params = attrs[:params] || %{}
   
-        new_field_data =
-          cond do
-            "offer_period" == field_id ->
-              new_field_data
-              |> Map.put(:type, "bool")
-              |> Map.put(:label, LS.get("offer_period_proposal.edit", lang, []))
+    lot_ids = params["lots_ids"]
   
-            true ->
-              new_field_data |> Map.put(:group, group)
-          end
-  
-        new_field_data =
-          new_field_data
-          |> Map.put(:value, proposal_value!(state, field_id))
-          |> Map.put(:order, (new_field_data[:order] || new_field_data["order"]) + 0.1)
-          |> Map.put(:group, group)
-  
-        field_data = field_data |> Map.put("group", group)
-  
-        Map.put(acc, "proposal_#{field_id}", new_field_data)
-        |> Map.put(field_id, field_data)
-  
-      _e, acc ->
-        acc
+    state["lots"]
+    |> Enum.filter(fn {lot_id, _} ->
+      (is_list(lot_id) and lot_ids in params["lots_ids"]) or
+        (lot_id == params["lot"] or is_nil(params["lot"]))
     end)
+    |> Enum.reduce([], fn {lot_id, lot}, acc ->
+      Enum.map(lot["items"], fn {item_id, item} ->
+        %{
+          "lot_id" => lot_id,
+          "item_id" => item_id,
+          "id" => item_id,
+          "fields" =>
+            gen_item(
+              item,
+              [lot_id: lot_id, item_id: item_id, item: item, original_state: state] ++
+                Keyword.take(attrs, [:auth_data, :part_id, :offset])
+            )
+        }
+      end) ++ acc
+    end)
+  
+    off = params["off"] || params["offset"]
+    lim = params["lim"] || params["limit"]
+  
+    if is_nil(off) or is_nil(lim) do
+      items
+    else
+      Enum.slice(items, off, lim)
+    end
   end

@@ -1,2 +1,2 @@
-lua/custom-plugins/nvim-code-eval-plugin/
-configs/eval-plugin.lua
+/lua/custom-plugins/nvim-code-eval-plugin/
+/lua/configs/eval-plugin.lua
