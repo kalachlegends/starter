@@ -1,2 +1,4 @@
 /lua/custom-plugins/nvim-code-eval-plugin/
 /lua/configs/eval-plugin.lua
+result_tmp.txt
+tmp.txt

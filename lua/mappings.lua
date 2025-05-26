@@ -3,7 +3,6 @@
 
 local map = vim.keymap.set
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("n", "|", function()
 
@@ -33,6 +32,7 @@ end
 
 end)
 map("v", "<Tab>", ">>", { noremap = true, silent = true })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
 --
 -- sdffds
@@ -56,8 +56,8 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
 
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
+-- map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
+-- map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
 map("n", "<leader>fm", function()
@@ -89,6 +89,7 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 -- nvimtree
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
@@ -149,4 +150,10 @@ end, { desc = "whichkey query lookup" })
 -- map("n", "<leader>tc", ":tabclose<CR>", { desc = "Close Tab" })
 -- map("n", "<Tab>", ":tabnext<CR>", { desc = "Next Tab" })
 
-    
+
+vim.keymap.del('n', '<C-s>')
+vim.keymap.del('i', '<C-s>')
+vim.keymap.del('v', '<C-s>')
+map("n", "<C-s>", "<cmd>w!<CR>", { noremap = true, silent = true })
+map("i", "<C-s>", "<Esc><cmd>w!<CR>a", { noremap = true, silent = true })
+map("v", "<C-s>", "<Esc><cmd>w!<CR>", { noremap = true, silent = true })
