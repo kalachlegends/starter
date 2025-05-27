@@ -1,0 +1,16 @@
+  def cancel_reason(state, attrs \\ []) do
+    order = Keyword.fetch!(attrs, :order)
+    field(state, "cancel_reason", [
+          order,
+          {:type, :widget},
+          {:label, "!"},
+          {:widget,
+           %{
+             "name" => "ui-alert",
+             "props" => %{"type" => "warning"},
+             "content" => ""
+           }},
+          {:group_without_general, "general"},
+          {:hidden, state["status"] != "cancel"}
+   ])
+  end

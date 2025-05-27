@@ -74,28 +74,6 @@ return {
     end,
   },
   {
-    "nvim-tree/nvim-tree.lua",
-    opts = {
-      on_attach = function(bufnr)
-        local api = require "nvim-tree.api"
-
-        local function opts(desc)
-          return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-        end
-
-          local keymap = vim.keymap.set
-        -- remove default keymap example
-        api.config.mappings.default_on_attach(bufnr)
-
-        -- custom mappings
-        keymap("n", "<BS>", api.tree.change_root_to_parent, opts "Change root to parent")
-        keymap("n", ".", api.tree.change_root_to_node, opts "Change root to root")
-        keymap("n", "l", api.node.open.edit, opts("Open"))
-        keymap("n", "h", api.node.navigate.parent_close, opts("Close Directory"))
-      end,
-    },
-  },
-  {
     "nvim-treesitter/nvim-treesitter",
 
     lazy = false,
@@ -181,7 +159,11 @@ return {
       ft = { "markdown", "Avante" },
     },
   },
-}
+},
+
+  { import = "configs.nvim-tree" },
+  { import = "configs.git-signs" },
+  { import = "nvchad.blink.lazyspec" }
   -- {
   --   "elixir-tools/elixir-tools.nvim",
   --   version = "*",
