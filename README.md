@@ -1,3 +1,17 @@
+Чтобы все работало корректно надо установить данные пакеты
+
+WINDOWS
+
+```
+winget install BurntSushi.ripgrep.MSVC
+winget install -e --id=JesseDuffield.lazygit
+winget install -e --id zig.zig
+
+choco install luarocks
+choco install nodejs.install
+Set-ExecutionPolicy RemoteSigned
+```
+
 **This repo is supposed to used as config by NvChad users!**
 
 - The main nvchad repo (NvChad/NvChad) is used as a plugin by this repo.
