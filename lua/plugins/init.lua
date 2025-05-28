@@ -13,12 +13,6 @@ return {
     -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
-
-  {
-    "williamboman/mason.nvim",
-    opts = {
-    },
-  },
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
@@ -42,15 +36,14 @@ return {
       lazy = false,
       config = true,
   },
-
-  -- {
-  --   dir = "/home/artem/.config/nvim/lua/custom-plugins/nvim-code-eval-plugin/",
-  --   lazy = false,
-  --   dependencies = { "nvim-lua/plenary.nvim" },
-  --   config = function()
-  --       require("configs.eval-plugin").config_setup()
-  --   end,
-  -- },
+  {
+    dir = vim.fn.stdpath "config" .. "/lua/custom-plugins/nvim-code-eval-plugin/",
+    lazy = false,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+        require("configs.eval-plugin").config_setup()
+    end,
+  },
 
 
 }

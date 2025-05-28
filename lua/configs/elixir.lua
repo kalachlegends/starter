@@ -10,9 +10,21 @@
       elixir.setup {
         nextls = {enable = true},
         elixirls = {
-          enable = true,
+          enable = function()
+            local bufname = vim.api.nvim_buf_get_name(0)
+            -- List of folders to disable elixirls for
+            local disabled_folders = { "deps", "_build", ".elixir_ls", "ms_pp" }
+
+            for _, folder in ipairs(disabled_folders) do
+              if bufname:match(folder) then
+                return false
+              end
+            end
+
+            return true
+          end,
           settings = elixirls.settings {
-            dialyzerEnabled = false,
+       dialyzerEnabled = false,
             enableTestLenses = false,
           },
           on_attach = function(client, bufnr)
