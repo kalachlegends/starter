@@ -8,3 +8,5 @@ vim.o.swapfile = false
 vim.opt.wrap = false
 vim.o.number = true
 vim.o.relativenumber = true
+local envpath = vim.fn.stdpath "config" .. "/.env"
+require("utils").load_env_file(envpath)

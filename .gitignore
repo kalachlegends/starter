@@ -2,3 +2,4 @@
 /lua/configs/eval-plugin.lua
 /lua/custom-plugins/format_current_lines/tmp.txt
 /lua/custom-plugins/format_current_lines/result_tmp.txt
+.env

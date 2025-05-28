@@ -14,6 +14,29 @@ local function set_mappings(maps, options)
     end
   end
 end
+local function load_env_file(filepath)
+  filepath = filepath or ".env"
+  local file = io.open(filepath, "r")
+
+  if not file then
+    vim.notify("Could not open " .. filepath, vim.log.levels.WARN)
+    return
+  end
+
+  for line in file:lines() do
+    if not line:match("^%s*#") and line:match("%S") then
+      local key, value = line:match("^%s*([%w_]+)%s*=%s*(.*)%s*$")
+      if key and value then
+        -- Remove surrounding quotes if present
+        value = value:gsub("^['\"](.-)['\"]$", "%1")
+        vim.env[key] = value
+      end
+    end
+  end
+
+  file:close()
+end
 
 M.set_mappings = set_mappings
+M.load_env_file = load_env_file
 return M

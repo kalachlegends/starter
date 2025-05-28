@@ -4,7 +4,7 @@ return {
     lazy = false,
     dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects"
-  },
+    },
     opts = {
       ensure_installed = {
         "vim",
@@ -15,7 +15,11 @@ return {
         "elixir",
         "dart"
       },
-     select = {
+          highlight = { enable = true },
+      incremental_selection = { enable = true },
+      indent = { enable = true },
+      textobjects = {
+        select = {
           enable = true,
           lookahead = true,
           keymaps = {
@@ -70,11 +74,6 @@ return {
             ["<A"] = { query = "@parameter.inner", desc = "Swap previous argument" },
           },
         },
-      },
-      ignore_install = { },
-
-
-      highlight = {
-        enable = true,
-      },
-    }
+      }
+  }
+}
