@@ -1,0 +1,25 @@
+{
+  "get_proc": {
+    "prefix": "get_proc",
+    "body": [
+      "state = RPCHandler.get_state(${1:proc_id}) |> elem(1) |> Map.get(:data)"
+    ],
+    "description": "get_proc"
+  },
+  "eval_proc": {
+    "prefix": "eval_proc",
+    "body": [
+      "  MsPP.Api.UMethods.process(\"eval\", %{",
+      "    \"proc_id\" => ${1:proc_id},",
+      "     \"_\" => \"\"\"",
+      "     state ",
+      "     ",
+      "     \"\"\",",
+      "     \"result11\" => \"command\"",
+      "  }, :msa)",
+      "  end)",
+      ""
+    ],
+    "description": "eval_proc"
+  }
+}

@@ -1,12 +1,4 @@
 {
-
-  "get_proc": {
-    "prefix": "get_proc",
-    "body": [
-      "state = RPCHandler.get_state(${1:proc_id}) |> elem(1) |> Map.get(:data) "
-    ],
-    "description": "get_proc"
-  },
   "case": {
     "prefix": "case",
     "body": "case $1 do\n  $2 ->\n    $0\nend",

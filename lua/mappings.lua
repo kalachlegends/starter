@@ -158,3 +158,13 @@ map("n", "<C-s>", "<cmd>w!<CR>", { noremap = true, silent = true })
 map("i", "<C-s>", "<Esc><cmd>w!<CR>a", { noremap = true, silent = true })
 map("v", "<C-s>", "<Esc><cmd>w!<CR>", { noremap = true, silent = true })
 map("n", "<leader>fk", "<cmd>Telescope commands<CR>", { desc = "telescope find commands" })
+
+-- Map '+' to open a fold
+vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
+
+-- Map '-' to close a fold
+vim.keymap.set('n', '-', 'zc', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Up>',    ':resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Down>',  ':resize +2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Left>',  ':vertical resize +2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })

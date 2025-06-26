@@ -7,7 +7,7 @@ return {
   { import = "configs.elixir" },
   { import = "configs.avante" },
   { import = "configs.lazygit" },
-  -- { import = "configs.format_current_lines" },
+  { import = "configs.format_current_lines" },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -45,5 +45,7 @@ return {
     end,
   },
 
+  -- "NvChad/nvcommunity",
+  -- { import = "nvcommunity.folds.ufo" },
 
 }
