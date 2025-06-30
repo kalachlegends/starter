@@ -25,12 +25,20 @@ end)
 
 map("n", "<leader>bC", function()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-  if vim.bo[buf].buflisted then
-    vim.api.nvim_buf_delete(buf, { force = true })
+    if vim.bo[buf].buflisted then
+      -- Save the buffer if it's modified
+      if vim.bo[buf].modified and vim.bo[buf].modifiable then
+        -- Use pcall to avoid errors
+        pcall(vim.api.nvim_buf_call, buf, function()
+          vim.cmd("!w")
+        end)
+      end
+      -- Delete the buffer safely
+      pcall(vim.api.nvim_buf_delete, buf, { force = false })
+    end
   end
-end
-
 end)
+
 map("v", "<Tab>", ">>", { noremap = true, silent = true })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
