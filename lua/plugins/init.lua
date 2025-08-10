@@ -1,6 +1,6 @@
 return {
   { import = "configs.nvim-tree" },
-  { import = "nvchad.blink.lazyspec" },
+  { import = "configs.blink_cmp" },
   { import = "configs.flutter_spec" },
   { import = "configs.tree-sitter" },
   { import = "configs.git-signs" },
