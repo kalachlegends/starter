@@ -3,3 +3,6 @@
 /lua/custom-plugins/format_current_lines/tmp.txt
 /lua/custom-plugins/format_current_lines/result_tmp.txt
 .env
+/snippets/hidden_all.json
+tmp.txt
+result_tmp.txt

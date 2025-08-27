@@ -1,4 +1,6 @@
 return {
+  { import = "configs.auto-save" },
+  { import = "configs.grug-far" },
   { import = "configs.nvim-tree" },
   { import = "configs.blink_cmp" },
   { import = "configs.flutter_spec" },
@@ -8,6 +10,19 @@ return {
   { import = "configs.avante" },
   { import = "configs.lazygit" },
   { import = "configs.format_current_lines" },
+  { import = "configs.nvim-scissors" },
+  {
+    "HakonHarnes/img-clip.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- add options here
+      -- or leave it empty to use the default settings
+    },
+    keys = {
+      -- suggested keymap
+      { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
+    },
+  },
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
@@ -26,22 +41,22 @@ return {
     branch = "master",
     init = function()
       vim.g.VM_maps = {
-         ['Find Under']         = '<C-n>',
-         ['Find Subword Under'] = '<C-n>',
+        ['Find Under']         = '<C-n>',
+        ['Find Subword Under'] = '<C-n>',
       }
     end
   },
   {
-      "mcauley-penney/tidy.nvim",
-      lazy = false,
-      config = true,
+    "mcauley-penney/tidy.nvim",
+    lazy = false,
+    config = true,
   },
   {
     dir = vim.fn.stdpath "config" .. "/lua/custom-plugins/nvim-code-eval-plugin/",
     lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
-        require("configs.eval-plugin").config_setup()
+      require("configs.eval-plugin").config_setup()
     end,
   },
 

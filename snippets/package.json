@@ -9,6 +9,11 @@
         "language": "all",
         "path": "./all.json"
       },
+
+      {
+        "language": "all",
+        "path": "./hidden_all.json"
+      },
       {
         "language": "elixir",
         "path": "./elixir.json"
