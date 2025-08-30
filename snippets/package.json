@@ -9,10 +9,17 @@
         "language": "all",
         "path": "./all.json"
       },
-
+      {
+        "language": "all",
+        "path": "./sql_all.json"
+      },
       {
         "language": "all",
         "path": "./hidden_all.json"
+      },
+      {
+        "language": "dart",
+        "path": "./dart.json"
       },
       {
         "language": "elixir",
