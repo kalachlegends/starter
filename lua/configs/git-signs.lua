@@ -22,7 +22,6 @@ return {
       },
       -- worktrees = astrocore.config.git_worktrees,
     })
-    -- Настройка клавиш глобально
     local maps = {}
     local prefix = "<Leader>g"
     for _, mode in ipairs { "n", "v" } do

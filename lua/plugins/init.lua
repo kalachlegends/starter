@@ -9,7 +9,6 @@ return {
   { import = "configs.elixir" },
   { import = "configs.avante" },
   { import = "configs.lazygit" },
-  { import = "configs.format_current_lines" },
   { import = "configs.nvim-scissors" },
   {
     "HakonHarnes/img-clip.nvim",
@@ -51,14 +50,17 @@ return {
     lazy = false,
     config = true,
   },
-  {
+
+  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.format_current_lines" } or nil),
+
+  (vim.env.PLUGIN_EVAL == "true" and {
     dir = vim.fn.stdpath "config" .. "/lua/custom-plugins/nvim-code-eval-plugin/",
     lazy = false,
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("configs.eval-plugin").config_setup()
     end,
-  },
+  } or nil),
 
   -- "NvChad/nvcommunity",
   -- { import = "nvcommunity.folds.ufo" },

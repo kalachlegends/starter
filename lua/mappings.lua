@@ -24,20 +24,21 @@ end)
 
 
 map("n", "<leader>bC", function()
+  local current_buf = vim.api.nvim_get_current_buf()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.bo[buf].buflisted then
+    if vim.bo[buf].buflisted and buf ~= current_buf then
       -- Save the buffer if it's modified
       if vim.bo[buf].modified and vim.bo[buf].modifiable then
         -- Use pcall to avoid errors
         pcall(vim.api.nvim_buf_call, buf, function()
-          vim.cmd("!w")
+          vim.cmd("w")
         end)
       end
       -- Delete the buffer safely
       pcall(vim.api.nvim_buf_delete, buf, { force = false })
     end
   end
-end)
+end, { desc = "close all buffers except current" })
 
 map("v", "<Tab>", ">>", { noremap = true, silent = true })
 
@@ -76,7 +77,32 @@ end, { desc = "general format file" })
 map("n", "<leader>ld", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
 -- tabufline
-map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "buffer new" })
+vim.api.nvim_create_user_command("NewLspBuffer", function(opts)
+  local ft = opts.args
+
+  if ft == "" then
+    ft = vim.bo.filetype
+  end
+
+  if ft == "" then
+    vim.ui.input({ prompt = "Enter filetype: " }, function(input)
+      if input and input ~= "" then
+        vim.cmd("enew")
+        vim.bo.filetype = input
+      else
+        print("No filetype provided, aborting.")
+      end
+    end)
+  else
+    vim.cmd("enew")
+    vim.bo.filetype = ft
+  end
+end, {
+  nargs = "?",
+  complete = "filetype",
+})
+
+map("n", "<leader>bn", "<cmd>NewLspBuffer<CR>", { desc = "buffer new" })
 
 map("n", "<tab>", function()
   require("nvchad.tabufline").next()
@@ -126,11 +152,11 @@ map(
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- new terminals
-map("n", "<leader>h", function()
+map("n", "<leader>th", function()
   require("nvchad.term").new { pos = "sp" }
 end, { desc = "terminal new horizontal term" })
 
-map("n", "<leader>v", function()
+map("n", "<leader>tv", function()
   require("nvchad.term").new { pos = "vsp" }
 end, { desc = "terminal new vertical term" })
 
@@ -158,7 +184,6 @@ end, { desc = "whichkey query lookup" })
 -- map("n", "<leader>tc", ":tabclose<CR>", { desc = "Close Tab" })
 -- map("n", "<Tab>", ":tabnext<CR>", { desc = "Next Tab" })
 
-
 vim.keymap.del('n', '<C-s>')
 vim.keymap.del('i', '<C-s>')
 vim.keymap.del('v', '<C-s>')
@@ -166,7 +191,7 @@ map("n", "<C-s>", "<cmd>w!<CR>", { noremap = true, silent = true })
 map("i", "<C-s>", "<Esc><cmd>w!<CR>a", { noremap = true, silent = true })
 map("v", "<C-s>", "<Esc><cmd>w!<CR>", { noremap = true, silent = true })
 map("n", "<leader>fk", "<cmd>Telescope commands<CR>", { desc = "telescope find commands" })
-
+map("n", "m", "@q", { desc = "execute macro recorded in register q" })
 -- Map '+' to open a fold
 vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
 
@@ -174,5 +199,5 @@ vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
 vim.keymap.set('n', '-', 'zc', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Up>',    ':resize -2<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Down>',  ':resize +2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Left>',  ':vertical resize +2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Right>', ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Left>',  ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
