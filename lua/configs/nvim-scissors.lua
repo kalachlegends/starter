@@ -5,7 +5,6 @@ return {
 
   opts = {
     snippetDir = vim.fn.stdpath "config" .. "/snippets",
-
   },
   config = function()
     require("scissors").setup {

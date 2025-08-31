@@ -1,6 +1,7 @@
 return {
     "format_current_lines", -- Имя плагина (может быть любое)
     lazy = false,
+
     dir = "~/.config/nvim/lua/custom-plugins/format_current_lines_ex/",
     config = function()
       local replace_with_execute = require "custom-plugins.format_current_lines_ex"
