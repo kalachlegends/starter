@@ -10,6 +10,10 @@ local servers = {
   cssls = {},
   elixirls = {},
   dart = {},
+
+  nextls = {
+
+  }
 }
 local nvlsp = require "configs.lspconfigs"
 

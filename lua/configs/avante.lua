@@ -23,13 +23,16 @@ return {
     },
     -- add any opts here
     -- for example
-    provider = "openai",
+    provider = "claude",
     providers = {
-
+      -- ollama = {
+      --   endpoint = "http://localhost:11434",
+      --   model = "qwq:32b",
+      -- },
       openai = {
-        model = "gpt-5", -- Or your desired OpenAI model (e.g., "gpt-3.5-turbo")
+        model = "gpt-5",                        -- Or your desired OpenAI model (e.g., "gpt-3.5-turbo")
         endpoint = "https://api.openai.com/v1", -- OpenAI API endpoint
-        timeout = 30000, -- Timeout in milliseconds
+        timeout = 30000,                        -- Timeout in milliseconds
         -- extra_request_body = {
         --   temperature = 0.75,
         --   max_tokens = 20480,
@@ -39,16 +42,27 @@ return {
         endpoint = "https://api.anthropic.com",
         model = "claude-sonnet-4-20250514",
         timeout = 30000, -- Timeout in milliseconds
-        -- extra_request_body = {
-        --   temperature = 0.75,
-        --   max_tokens = 20480,
-        -- },
+        extra_request_body = {
+          temperature = 0.75,
+          max_tokens = 20480,
+        },
       },
     },
+    -- vendors = {
+    --   ollama = {
+    --     __inherited_from = "openai",
+    --     api_key_name = "",
+    --     endpoint = "http://127.0.0.1:11434/v1",
+    --     model = "qwen2.5",
+    --     max_tokens = 4097,
+    --     -- important to set this to true if you are using a local server
+    --     disable_tools = true,
+    --   },
+    -- },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- build = "make",
     build = vim.fn.has("win32") ~= 0
-      and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
     -- selector = {
     --   --- @alias avante.SelectorProvider "native" | "fzf_lua" | "mini_pick" | "snacks" | "telescope" | fun(selector: avante.ui.Selector): nil
     --   --- @type avante.SelectorProvider

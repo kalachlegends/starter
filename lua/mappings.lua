@@ -1,25 +1,19 @@
-
 -- add yours here
 
 local map = vim.keymap.set
 
 map("i", "jk", "<ESC>")
 map("n", "|", function()
-
-   local bufname = vim.api.nvim_buf_get_name(0)
+  local bufname = vim.api.nvim_buf_get_name(0)
   if bufname == "" then
     print("No file associated with this buffer.")
     return
   end
   vim.cmd("vsplit " .. vim.fn.fnameescape(bufname))
-end, {desc = "Open vertical split" })
+end, { desc = "Open vertical split" })
 
 map("n", "jk", "<ESC>")
 
-map("n", "<leader>bc", function()
-  vim.cmd("w")
-  vim.api.nvim_buf_delete(0, { force = true })
-end)
 
 
 
@@ -40,6 +34,10 @@ map("n", "<leader>bC", function()
   end
 end, { desc = "close all buffers except current" })
 
+map("n", "<leader>bc", function()
+  vim.cmd("w")
+  vim.api.nvim_buf_delete(0, { force = true })
+end)
 map("v", "<Tab>", ">>", { noremap = true, silent = true })
 
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
@@ -121,15 +119,15 @@ map("n", "<leader>/", "gcc", { desc = "toggle comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 
 -- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
+-- map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree focus window" })
 
 
 -- telescope
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
--- map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
+map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
@@ -191,13 +189,13 @@ map("n", "<C-s>", "<cmd>w!<CR>", { noremap = true, silent = true })
 map("i", "<C-s>", "<Esc><cmd>w!<CR>a", { noremap = true, silent = true })
 map("v", "<C-s>", "<Esc><cmd>w!<CR>", { noremap = true, silent = true })
 map("n", "<leader>fk", "<cmd>Telescope commands<CR>", { desc = "telescope find commands" })
-map("n", "m", "@q", { desc = "execute macro recorded in register q" })
+-- map("n", "m", "@q", { desc = "execute macro recorded in register q" })
 -- Map '+' to open a fold
 vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
 
 -- Map '-' to close a fold
 vim.keymap.set('n', '-', 'zc', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Up>',    ':resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Down>',  ':resize +2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Left>',  ':vertical resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
 vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })

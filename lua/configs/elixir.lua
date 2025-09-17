@@ -8,7 +8,7 @@
       local elixirls = require("elixir.elixirls")
 
       elixir.setup {
-        nextls = {enable = true},
+        -- nextls = {enable = true},
         elixirls = {
           enable = function()
             local bufname = vim.api.nvim_buf_get_name(0)
