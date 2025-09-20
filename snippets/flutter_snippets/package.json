@@ -1,0 +1,105 @@
+{
+  "name": "flutter-riverpod-snippets",
+  "displayName": "Flutter Riverpod Snippets",
+  "description": "Quick and easy Flutter Riverpod snippets",
+  "icon": "logo.jpg",
+  "version": "1.2.2",
+  "publisher": "robert-brunhage",
+  "homepage": "https://github.com/RobertBrunhage/flutter-riverpod-snippets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RobertBrunhage/flutter-riverpod-snippets"
+  },
+  "keywords": [
+    "Flutter",
+    "Dart",
+    "Snippets",
+    "Riverpod"
+  ],
+  "engines": {
+    "vscode": "^1.62.3"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "dart",
+        "path": "./async_notifier_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./async_notifier.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./notifier_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./notifier.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./stream_notifier_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./stream_notifier.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./consumer.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./change_notifier_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./change_notifier.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./future_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./state_notifier.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./state_notifier_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./state_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./stream_provider.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./consumer_widgets.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./hook_consumer.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./provider_listenable.code-snippets"
+      },
+      {
+        "language": "dart",
+        "path": "./code_generator.code-snippets"
+      }
+    ]
+  }
+}

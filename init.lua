@@ -38,7 +38,7 @@ require "options"
 require "nvchad.autocmds"
 
 local ls = require("luasnip")
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.g.vscode_snippets_path } })
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { vim.g.vscode_snippets_path, vim.fn.stdpath "config" .. "/snippets/flutter_snippets" } })
 
 vim.schedule(function()
   require "mappings"
