@@ -19,5 +19,17 @@ return {
     use_sealed_classes = false,
     enable_code_actions = true,
   }
+},
+  {
+    'wa11breaker/dart-data-class-generator.nvim',
+    dependencies = {
+        "nvimtools/none-ls.nvim", -- Required for code actions
+    },
+    event = "BufRead *.dart",
+
+    ft = 'dart',
+    config = function()
+        require("dart-data-class-generator").setup({})
+    end
 }
 }

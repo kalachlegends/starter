@@ -25,6 +25,10 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+local null_ls = require("null-ls")
+
+null_ls.setup({
+})
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
