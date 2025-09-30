@@ -44,9 +44,21 @@ return {
     lazy = false,
     branch = "master",
     init = function()
+      vim.g.VM_theme = "purplegray"
+      vim.g.VM_mouse_mappings = 1
+      -- vim.schedule(function()
       vim.g.VM_maps = {
+
         ['Find Under']         = '<C-n>',
         ['Find Subword Under'] = '<C-n>',
+        ["I BS"] = "",
+        ["Goto Next"] = "]v",
+        ["Goto Prev"] = "[v",
+        ["I CtrlB"] = "<M-b>",
+        ["I CtrlF"] = "<M-f>",
+        ["I Return"] = "<S-CR>",
+        ["I Down Arrow"] = "",
+        ["I Up Arrow"] = "",
       }
     end
   },
@@ -58,7 +70,7 @@ return {
 
   (vim.env.PLUGIN_EVAL == "true" and { import = "configs.format_current_lines" } or nil),
 
-  (vim.env.PLUGIN_EVAL == "true" and {import = "configs.eval-plugin"} or nil),
+  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.eval-plugin" } or nil),
 
   -- "NvChad/nvcommunity",
   -- { import = "nvcommunity.folds.ufo" },

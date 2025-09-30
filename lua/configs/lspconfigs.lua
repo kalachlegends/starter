@@ -17,7 +17,13 @@ M.on_attach = function(_, bufnr)
   end, opts "List workspace folders")
 
   map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
-  map("n", "gq", vim.lsp.buf.code_action, opts "Code action")
+  map("n", "gq", function()
+    vim.lsp.buf.code_action({
+      filter = function(action)
+        return action.source ~= "null-ls"
+      end
+    })
+  end, opts "Code action")
   map("n", "<leader>lr", require "nvchad.lsp.renamer", opts "NvRenamer")
 
 end

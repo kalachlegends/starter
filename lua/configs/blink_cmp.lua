@@ -22,7 +22,7 @@ return {
           require "nvchad.configs.luasnip"
         end,
       },
-
+      {        "giuxtaposition/blink-cmp-copilot",},
       {
         "windwp/nvim-autopairs",
         opts = {
@@ -37,7 +37,7 @@ return {
       appearance = { nerd_font_variant = "normal" },
       fuzzy = { implementation = "prefer_rust" },
       sources = {
-        default = { "lsp", "snippets", "buffer", "path", "avante" },
+        default = { "lsp", "snippets", "buffer", "path", "avante", "copilot" },
         providers = {
           avante = {
             module = 'blink-cmp-avante',
@@ -45,7 +45,13 @@ return {
             opts = {
               -- options for blink-cmp-avante
             }
-          }
+          },
+          copilot = {
+            name = "copilot",
+            module = "blink-cmp-copilot",
+            score_offset = 100,
+            async = true,
+          },
         }
       },
 
