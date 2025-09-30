@@ -9,14 +9,39 @@ M.on_attach = function(_, bufnr)
 
   map("n", "gD", vim.lsp.buf.declaration, opts "Go to declaration")
   map("n", "gd", vim.lsp.buf.definition, opts "Go to definition")
-  map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
-  map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
+  map("n", "<leader>la", vim.lsp.buf.add_workspace_folder, opts "Add workspace folder")
+  map("n", "<leader>lr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
+  map("n", "<leader>lr", vim.lsp.buf.remove_workspace_folder, opts "Remove workspace folder")
 
+  map("n", "<leader>ld", vim.diagnostic.setloclist,  opts "LSP diagnostic loclist" )
+
+  map("n", "<leader>lq", vim.diagnostic.setqflist, opts "LSP diagnostic quickfix")
+  map("n", "<leader>lf", function()
+    vim.lsp.buf.format { async = true }
+  end, opts "Format file")
+  map("n", "<leader>lc", function()
+    local diagnostics = vim.diagnostic.get(0)
+    if #diagnostics > 0 then
+      local error_text = diagnostics[1].message
+      vim.fn.setreg('+', error_text)
+    else
+      print("No diagnostics found")
+    end
+  end, opts "Copy error to clipboard")
+
+
+  map("n", "<leader>ls", function()
+    local diagnostics = vim.diagnostic.get(0)
+    if #diagnostics > 0 then
+      vim.diagnostic.open_float()
+    else
+      print("No diagnostics found")
+    end
+  end, opts "Show error")
   map("n", "<leader>lw", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts "List workspace folders")
 
-  map("n", "<leader>D", vim.lsp.buf.type_definition, opts "Go to type definition")
   map("n", "gq", vim.lsp.buf.code_action, opts "Code action")
   map("n", "<leader>lr", require "nvchad.lsp.renamer", opts "NvRenamer")
 

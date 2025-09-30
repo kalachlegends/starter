@@ -72,7 +72,6 @@ map("n", "<leader>lf", function()
 end, { desc = "general format file" })
 
 -- global lsp mappings
-map("n", "<leader>ld", vim.diagnostic.setloclist, { desc = "LSP diagnostic loclist" })
 
 -- tabufline
 vim.api.nvim_create_user_command("NewLspBuffer", function(opts)
