@@ -30,14 +30,6 @@ M.on_attach = function(_, bufnr)
   end, opts "Copy error to clipboard")
 
 
-  map("n", "<leader>ls", function()
-    local diagnostics = vim.diagnostic.get(0)
-    if #diagnostics > 0 then
-      vim.diagnostic.open_float()
-    else
-      print("No diagnostics found")
-    end
-  end, opts "Show error")
   map("n", "<leader>lw", function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, opts "List workspace folders")
