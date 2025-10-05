@@ -35,8 +35,7 @@ map("n", "<leader>bC", function()
 end, { desc = "close all buffers except current" })
 
 map("n", "<leader>bc", function()
-  vim.cmd("w")
-  vim.api.nvim_buf_delete(0, { force = true })
+  require("nvchad.tabufline").close_buffer()
 end)
 map("v", "<Tab>", ">>", { noremap = true, silent = true })
 
@@ -46,6 +45,45 @@ map("v", "<Tab>", ">>", { noremap = true, silent = true })
 --
 
 
+map("n", "<leader>ls", function()
+  local diagnostics = vim.diagnostic.get(0)
+  if #diagnostics > 0 then
+    vim.diagnostic.open_float()
+  else
+    print("No diagnostics found")
+  end
+end, { desc = "Show error" })
+
+map("n", "<leader>lQ", function()
+  -- Get diagnostics and copy first message to clipboard register
+  local diagnostics = vim.diagnostic.get(0)
+  if #diagnostics == 0 then
+    print("No diagnostics found")
+    return
+  end
+  local error_text = diagnostics[1].message
+  -- copy to system clipboard register +
+  pcall(vim.fn.setreg, "+", error_text)
+  -- attempt to run :avanteedit with the error text as an argument (shell-escaped)
+  local cmd = "AvanteEdit" .. vim.fn.shellescape(error_text)
+  local ok, err = pcall(vim.cmd, cmd)
+  if ok then
+    print("Sent diagnostic to :avanteedit and copied to clipboard.")
+  else
+    -- If :avanteedit is not available or failed, notify the user
+    print("Failed to run :avanteedit. Diagnostic copied to clipboard. (" .. (err or "unknown error") .. ")")
+  end
+
+end, { desc = "Copy error, open avante (if available) and paste" })
+
+map("n", "<leader>Q", function()
+  local choice = vim.fn.confirm("Quit Neovim and close all windows?", "&Yes\n&No", 2, "Question")
+  if choice == 1 then
+    vim.cmd("confirm qall")
+  else
+    print("Quit cancelled")
+  end
+end, { desc = "quit Neovim (confirm all)" })
 map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
