@@ -1,4 +1,6 @@
 return {
+  { import = "configs.dap" },
+  { import = "configs.nvim-ufo" },
   { import = "configs.auto-save" },
   { import = "configs.grug-far" },
   { import = "configs.nvim-tree" },
@@ -67,6 +69,7 @@ return {
     lazy = false,
     config = true,
   },
+
 
   (vim.env.PLUGIN_EVAL == "true" and { import = "configs.format_current_lines" } or nil),
 

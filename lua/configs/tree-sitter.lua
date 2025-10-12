@@ -13,7 +13,9 @@ return {
         "html",
         "css",
         "elixir",
-        "dart"
+        "dart",
+        -- "log"
+
       },
           highlight = { enable = true },
       incremental_selection = { enable = true },

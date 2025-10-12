@@ -232,7 +232,34 @@ vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
 
 -- Map '-' to close a fold
 vim.keymap.set('n', '-', 'zc', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Up>', ':resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Down>', ':resize +2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { noremap = true, silent = true })
+map('n', '<C-Up>', function()
+  if vim.fn.winnr('$') > 1 then
+    vim.cmd('resize -2')
+  else
+    vim.cmd('resize +2')
+  end
+end, { desc = "resize window up", noremap = true, silent = true })
+
+map('n', '<C-Down>', function()
+  if vim.fn.winnr('$') > 1 then
+    vim.cmd('resize +2')
+  else
+    vim.cmd('resize -2')
+  end
+end, { desc = "resize window down", noremap = true, silent = true })
+
+map('n', '<C-Left>', function()
+  if vim.fn.winnr('$') > 1 then
+    vim.cmd('vertical resize -2')
+  else
+    vim.cmd('vertical resize +2')
+  end
+end, { desc = "resize window left", noremap = true, silent = true })
+
+map('n', '<C-Right>', function()
+  if vim.fn.winnr('$') > 1 then
+    vim.cmd('vertical resize +2')
+  else
+    vim.cmd('vertical resize -2')
+  end
+end, { desc = "resize window right", noremap = true, silent = true })
