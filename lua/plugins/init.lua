@@ -1,5 +1,5 @@
 return {
-  (vim.env.SQLUA == "true" and { import = "configs.sqllua" } or nil),
+  (vim.env.SQLUA == "true" and { import = "configs.sqllua" } or {}),
   { import = "configs.dap" },
   { import = "configs.nvim-ufo" },
   { import = "configs.auto-save" },
@@ -11,7 +11,7 @@ return {
   { import = "configs.git-signs" },
   { import = "configs.elixir" },
   { import = "configs.avante" },
-  (vim.env.COPILOT == "true" and { import = "configs.copilot" } or nil),
+  (vim.env.COPILOT == "true" and { import = "configs.copilot" } or {}),
   { import = "configs.lazygit" },
   { import = "configs.nvim-scissors" },
   { import = "configs.remote-nvim" },
@@ -73,9 +73,9 @@ return {
   },
 
 
-  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.format_current_lines" } or nil),
+  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.format_current_lines" } or {}),
 
-  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.eval-plugin" } or nil),
+  (vim.env.PLUGIN_EVAL == "true" and { import = "configs.eval-plugin" } or {}),
 
   -- "NvChad/nvcommunity",
   -- { import = "nvcommunity.folds.ufo" },
