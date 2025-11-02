@@ -42,7 +42,7 @@ return {
         enable_token_counting = true,          -- Whether to enable token counting. Default to true.
         auto_approve_tool_permissions = false, -- D
       },
-      auto_suggestions_provider = "copilot",
+      auto_suggestions_provider = vim.env.COPILOT == "true" and "copilot" or "claude",
 
       providers = {
         -- ollama = {
@@ -143,7 +143,7 @@ return {
       "hrsh7th/nvim-cmp",              -- autocompletion for avante commands and mentions
       "ibhagwan/fzf-lua",              -- for file_selector provider fzf
       "nvim-tree/nvim-web-devicons",   -- or echasnovski/mini.icons
-      "zbirenbaum/copilot.lua",        -- for providers='copilot'
+      vim.env.COPILOT == "true" and "zbirenbaum/copilot.lua" or nil,        -- for providers='copilot'
       {
         -- support for image pasting
         "HakonHarnes/img-clip.nvim",
