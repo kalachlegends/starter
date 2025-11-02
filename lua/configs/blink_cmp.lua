@@ -46,12 +46,12 @@ return {
               -- options for blink-cmp-avante
             }
           },
-          copilot = {
+          copilot = vim.env.COPILOT == "true" and {
             name = "copilot",
             module = "blink-cmp-copilot",
             score_offset = 100,
             async = true,
-          },
+          } or nil,
         }
       },
 
