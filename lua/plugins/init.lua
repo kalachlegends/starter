@@ -1,4 +1,5 @@
 return {
+  (vim.env.SQLUA == "true" and { import = "configs.sqllua" } or nil),
   { import = "configs.dap" },
   { import = "configs.nvim-ufo" },
   { import = "configs.auto-save" },
@@ -10,6 +11,7 @@ return {
   { import = "configs.git-signs" },
   { import = "configs.elixir" },
   { import = "configs.avante" },
+  (vim.env.COPILOT == "true" and { import = "configs.copilot" } or nil),
   { import = "configs.lazygit" },
   { import = "configs.nvim-scissors" },
   { import = "configs.remote-nvim" },
