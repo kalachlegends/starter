@@ -25,7 +25,7 @@ return {
       },
       -- add any opts here
       -- for example
-      provider = "copilot",
+      provider = vim.env.COPILOT == "true" and "copilot" or "claude",
 
       -- suggestion = {
       --   debounce = 100,
