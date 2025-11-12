@@ -1,1 +1,1 @@
-{}
+{"ai_ex_convert_to_str_keys":{"prefix":"ai_ex_convert_to_str_keys","body":"convert to str keys"},"ai_ex_wrap with proc_id":{"prefix":"ai_ex_wrap with proc_id","body":"оберни чтобы блок не работал с помощью такого услови state[\"proc_id\"] == ${1:proc_id} учитывай блок кода это или функция если фукнкци то используй when"}}

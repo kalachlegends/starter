@@ -29,7 +29,7 @@ map("n", "<leader>bC", function()
         end)
       end
       -- Delete the buffer safely
-      pcall(vim.api.nvim_buf_delete, buf, { force = false })
+      pcall(vim.api.nvim_buf_delete, buf, { force = true})
     end
   end
 end, { desc = "close all buffers except current" })
@@ -226,7 +226,7 @@ map("n", "<C-s>", "<cmd>w!<CR>", { noremap = true, silent = true })
 map("i", "<C-s>", "<Esc><cmd>w!<CR>a", { noremap = true, silent = true })
 map("v", "<C-s>", "<Esc><cmd>w!<CR>", { noremap = true, silent = true })
 map("n", "<leader>fk", "<cmd>Telescope commands<CR>", { desc = "telescope find commands" })
--- map("n", "m", "@q", { desc = "execute macro recorded in register q" })
+map("n", "m", "@q", { desc = "execute macro recorded in register q" })
 -- Map '+' to open a fold
 vim.keymap.set('n', '+', 'zo', { noremap = true, silent = true })
 
