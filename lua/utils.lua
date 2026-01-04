@@ -39,4 +39,38 @@ end
 
 M.set_mappings = set_mappings
 M.load_env_file = load_env_file
+M.telescope_executer_command = function(entries, prompt_title)
+  local pickers = require("telescope.pickers")
+  local finders = require("telescope.finders")
+  local conf = require("telescope.config").values
+  local actions = require("telescope.actions")
+  local action_state = require("telescope.actions.state")
+
+
+  pickers.new({}, {
+    prompt_title = prompt_title,
+    finder = finders.new_table {
+      results = entries,
+      entry_maker = function(entry)
+        return {
+          value = entry,
+          display = entry.name,
+          ordinal = entry.name,
+        }
+      end,
+    },
+    sorter = conf.generic_sorter({}),
+    attach_mappings = function(prompt_bufnr, map_)
+      actions.select_default:replace(function()
+        local selection = action_state.get_selected_entry()
+        actions.close(prompt_bufnr)
+        if selection and selection.value and selection.value.cmd then
+          vim.cmd(selection.value.cmd)
+        end
+      end)
+      return true
+    end,
+  }):find()
+end
+
 return M

@@ -3,7 +3,7 @@ require("configs.lspconfigs").defaults()
 
 -- local lspconfig = require "configs.lspconfigs"
 
-local servers = { "html", "cssls", "vtsls" }
+local servers = { "html", "cssls", "eslint", "dart" }
 vim.lsp.enable(servers)
 -- -- lsps with default config
 -- for _, lsp in ipairs(servers) do
