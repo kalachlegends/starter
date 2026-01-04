@@ -1,5 +1,4 @@
 return {
-
   {
     "yetone/avante.nvim",
     event = "VeryLazy",
@@ -69,6 +68,7 @@ return {
         moonshot = {
           endpoint = "https://api.moonshot.ai/v1",
           model = "kimi-k2-0711-preview",
+          disable_tools = false,
           timeout = 30000, -- Timeout in milliseconds
           extra_request_body = {
             temperature = 0.75,
@@ -79,7 +79,7 @@ return {
           endpoint = "https://api.anthropic.com",
           model = "claude-sonnet-4-20250514",
           timeout = 30000, -- Timeout in milliseconds
-          disable_tools = true,
+          disable_tools = false,
           extra_request_body = {
             temperature = 0.75,
             max_tokens = 20480,

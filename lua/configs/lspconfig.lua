@@ -1,34 +1,24 @@
 -- load defaults i.e lua_lsp
 require("configs.lspconfigs").defaults()
 
-local lspconfig = require "configs.lspconfigs"
+-- local lspconfig = require "configs.lspconfigs"
 
--- EXAMPLE
-local servers = {
-  lua = {},
-  html = {},
-  cssls = {},
-  dart = {},
-
-  nextls = {
-
-  }
-}
-local nvlsp = require "configs.lspconfigs"
-
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = nvlsp.on_attach,
-    on_init = nvlsp.on_init,
-    capabilities = nvlsp.capabilities,
-  }
-end
+local servers = { "html", "cssls", "vtsls" }
+vim.lsp.enable(servers)
+-- -- lsps with default config
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = nvlsp.on_attach,
+--     on_init = nvlsp.on_init,
+--     capabilities = nvlsp.capabilities,
+--   }
+-- end
 
 local null_ls = require("null-ls")
 
 null_ls.setup({
 })
+
 -- configuring single server, example: typescript
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
