@@ -31,14 +31,17 @@ return {
       { "<leader>p", "<cmd>PasteImage<cr>", desc = "Paste image from system clipboard" },
     },
   },
+  -- These are{
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    event = "BufWritePre",
+    config = function()
+      require "configs.conform"
+    end,
   },
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    lazy = false,
     config = function()
       require "configs.lspconfig"
     end,
@@ -55,14 +58,14 @@ return {
 
         ['Find Under']         = '<C-n>',
         ['Find Subword Under'] = '<C-n>',
-        ["I BS"] = "",
-        ["Goto Next"] = "]v",
-        ["Goto Prev"] = "[v",
-        ["I CtrlB"] = "<M-b>",
-        ["I CtrlF"] = "<M-f>",
-        ["I Return"] = "<S-CR>",
-        ["I Down Arrow"] = "",
-        ["I Up Arrow"] = "",
+        ["I BS"]               = "",
+        ["Goto Next"]          = "]v",
+        ["Goto Prev"]          = "[v",
+        ["I CtrlB"]            = "<M-b>",
+        ["I CtrlF"]            = "<M-f>",
+        ["I Return"]           = "<S-CR>",
+        ["I Down Arrow"]       = "",
+        ["I Up Arrow"]         = "",
       }
     end
   },

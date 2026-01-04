@@ -1,25 +1,42 @@
 -- load defaults i.e lua_lsp
 require("configs.lspconfigs").defaults()
 
--- local lspconfig = require "configs.lspconfigs"
+local servers = {
+  html = {},
+  awk_ls = {},
+  bashls = {},
+  prettier = {
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte", "astro", "htmlangular" }
+  },
+  eslint = {},
+  ts_ls = {
+    filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx", "vue", "svelte", "astro", "htmlangular" }
+  },
+}
 
-local servers = { "html", "cssls", "eslint", "dart" }
-vim.lsp.enable(servers)
--- -- lsps with default config
--- for _, lsp in ipairs(servers) do
---   lspconfig[lsp].setup {
---     on_attach = nvlsp.on_attach,
---     on_init = nvlsp.on_init,
---     capabilities = nvlsp.capabilities,
---   }
--- end
+for name, opts in pairs(servers) do
+  vim.lsp.config(name, opts)
+  vim.lsp.enable(name)
+end
 
 local null_ls = require("null-ls")
+
+-- require("lspconfig").ts_ls.setup({
+--   on_attach = nvlsp.on_attach,
+--   on_init = nvlsp.on_init,
+--   capabilities = nvlsp.capabilities,
+-- })
+
+-- require("lspconfig").ts_ls.setup({
+--   on_attach = nvlsp.on_attach,
+--   on_init = nvlsp.on_init,
+--   capabilities = nvlsp.capabilities,
+-- })
 
 null_ls.setup({
 })
 
--- configuring single server, example: typescript
+
 -- lspconfig.ts_ls.setup {
 --   on_attach = nvlsp.on_attach,
 --   on_init = nvlsp.on_init,
