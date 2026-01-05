@@ -42,60 +42,56 @@ return {
         auto_approve_tool_permissions = false, -- D
       },
       auto_suggestions_provider = vim.env.COPILOT == "true" and "copilot" or "claude",
-      acp_providers = {
-        ["gemini-cli"] = {
-          command = "gemini",
-          args = { "--experimental-acp" },
-          env = {
-            NODE_NO_WARNINGS = "1",
-            GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
-          },
-        },
-        ["claude-code"] = {
-          command = "npx",
-          args = { "@zed-industries/claude-code-acp" },
-          env = {
-            NODE_NO_WARNINGS = "1",
-            ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
-          },
-        },
-        ["goose"] = {
-          command = "goose",
-          args = { "acp" },
-        },
-        ["codex"] = {
-          command = "codex-acp",
-          env = {
-            NODE_NO_WARNINGS = "1",
-            OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
-          },
-        },
-      },
+      -- acp_providers = {
+      --   ["gemini-cli"] = {
+      --     command = "gemini",
+      --     args = { "--experimental-acp" },
+      --     env = {
+      --       NODE_NO_WARNINGS = "1",
+      --       GEMINI_API_KEY = os.getenv("GEMINI_API_KEY"),
+      --     },
+      --   },
+      --   ["claude-code"] = {
+      --     command = "npx",
+      --     args = { "@zed-industries/claude-code-acp" },
+      --     env = {
+      --       NODE_NO_WARNINGS = "1",
+      --       ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY"),
+      --     },
+      --   },
+      --   ["goose"] = {
+      --     command = "goose",
+      --     args = { "acp" },
+      --   },
+      --   ["codex"] = {
+      --     command = "codex-acp",
+      --     env = {
+      --       NODE_NO_WARNINGS = "1",
+      --       OPENAI_API_KEY = os.getenv("OPENAI_API_KEY"),
+      --     },
+      --   },
+      -- },
 
       providers = {
-        -- ollama = {
-        --   endpoint = "http://localhost:11434",
-        --   model = "qwq:32b",
-        -- },
-        --
         copilot = {
           model = "gpt-5-mini",
-          -- disable_tools = true,
         },
-        --
-        -- openai = {
-        --   model = "gpt-5",                        -- Or your desired OpenAI model (e.g., "gpt-3.5-turbo")
-        --   endpoint = "https://api.openai.com/v1", -- OpenAI API endpoint
-        --   timeout = 30000,                        -- Timeout in milliseconds
-        --   disable_tools = true,
-        --   -- extra_request_body = {
-        --   --   temperature = 0.75,
-        --   --   max_tokens = 20480,
-        --   -- },
-        -- },
+
         moonshot = {
           endpoint = "https://api.moonshot.ai/v1",
           model = "kimi-k2-0711-preview",
+          disable_tools = false,
+          timeout = 30000, -- Timeout in milliseconds
+          extra_request_body = {
+            temperature = 0.75,
+            max_tokens = 32768,
+          },
+        },
+
+        moonshotweak = {
+          __inherited_from = "openai",
+          endpoint = "https://api.moonshot.ai/v1",
+          model = "kimi",
           disable_tools = false,
           timeout = 30000, -- Timeout in milliseconds
           extra_request_body = {

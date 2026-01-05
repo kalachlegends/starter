@@ -46,6 +46,7 @@ return {
               -- options for blink-cmp-avante
             }
           },
+          codeium = { name = 'Codeium', module = 'codeium.blink', async = true },
           copilot = vim.env.COPILOT == "true" and {
             name = "copilot",
             module = "blink-cmp-copilot",
